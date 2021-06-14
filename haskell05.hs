@@ -24,24 +24,16 @@ bmi' peso altura
 
 --3
 cpfValid :: [Int] -> Bool
-cpfValid cpf = if dv1 == cpf !! 9 && dv2 == cpf !! 10
+cpfValid cpf = dv1 == cpf !! 9 && dv2 == cpf !! 10
   where digits = take 9 cpf
         dv1 = cpfDV digits [10,9..]
         dv2 = cpfDV (digits ++ [dv1]) [11,10..]
 
---cpfDV :: [Int] -> [Int] -> Int
---cpfDV digits mults = 
-  --let expr = (sum $ zipWith (*) digits mults) `mod` 11
- -- in expr < 2 then 0 else 11-expr
-
---main :: IO()
---main = do
--- putStr "CPF: "
--- cpf <- getLine
--- let digits = (map digitToInt cpf)
- --putStrLn (if cpfValid digits then "OK" else "Not OK")
+cpfDV :: [Int] -> [Int] -> Int
+cpfDV digits mults =
+  let expr = (sum $ zipWith (*) digits mults) `mod` 11
+    in if expr < 2 then 0 else 11-expr
 
 --4
 andTable :: [(Bool, Bool, Bool)]
-andTable (p, q, r) = (p, q, p AND q)
-
+andTable = [(x,y,z) | x <- [True, False], y <- [True, False], z <- [x == True && y == True]]
