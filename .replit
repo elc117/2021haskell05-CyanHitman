@@ -1,0 +1,2 @@
+language = "bash"
+run = "ghci haskell05.hs"
